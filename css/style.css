@@ -202,46 +202,56 @@ body {
 
 @media (max-width: 768px) {
 
-  /* sreally coded this for computers lol */
+  /* Title */
   h1 {
-    font-size: 34px;
-    margin: 12px 0 8px 0;
+    font-size: 30px;
+    margin: 14px 0 8px 0;
     text-align: center;
   }
 
-
+  /* HUD container */
   .hud {
-    width: 94%;
+    width: 95%;
     margin: 10px auto;
     padding: 12px;
-    display: flex;            
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hud-left, .hud-center, .hud-right {
-    text-align: center;
-    width: 100%;
-  }
-
-  .hud-value { font-size: 24px; }
-  .hud-money { font-size: 32px; }
-  .hud-round { font-size: 28px; }
-
-  .hud-sub {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* this was a project for class... */
-  .name-form {
-    width: 94%;
-    margin: 8px auto 14px auto;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
+    gap: 12px;
+  }
+
+  .hud-left,
+  .hud-center,
+  .hud-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hud-value {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .hud-money {
+    font-size: clamp(22px, 6vw, 30px);
+  }
+
+  .hud-round {
+    font-size: clamp(20px, 5.5vw, 26px);
+  }
+
+  .hud-sub {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Name Form */
+  .name-form {
+    width: 95%;
+    margin: 8px auto 16px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .name-form label {
@@ -250,57 +260,64 @@ body {
 
   #player_name {
     width: 100%;
-    font-size: 18px;
-    padding: 12px 14px;
+    font-size: 16px;
+    padding: 12px;
   }
 
   .name-form button.greenBut {
     width: 100%;
-    padding: 12px 14px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 16px;
   }
 
-  /* well hthis should work fr im tired */
+  /* Layout stacks */
   .game-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  /* Directions box */
   .directions-ig {
-    width: 94%;
-    margin: 0 auto 16px auto;
+    width: 92%;
+    margin: 0 auto 12px auto;
+    text-align: center;
   }
 
-  /* Dice stack */
+  /* Dice container stacked */
   .dice-container {
-    width: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px auto;
+    gap: 14px;
+    width: 100%;
+    margin: 12px auto;
   }
 
-  .player-side, .cpu-side {
+  .player-side,
+  .cpu-side {
     width: 100%;
     text-align: center;
   }
 
+  /* dice size for mobile */
   .dice {
-    width: 140px;
-    height: 140px;
+    width: clamp(105px, 34vw, 135px);
+    height: clamp(105px, 34vw, 135px);
   }
 
-  /* Big centered roll button */
+  /* Roll Button */
   .btn-roll-dice {
-    width: 94%;
-    margin: 16px auto;
-    font-size: 22px;
-    padding: 16px 0;
+    width: min(360px, 92%);
+    margin: 12px auto;
+    font-size: 16px;
+    padding: 10px 0;
+    border-radius: 10px;
   }
 
-  /* shrink image a bit */
+  /* Image resize */
   .rage_pic {
-    width: 160px;
-    margin-top: 10px;
+    width: 150px;
+    margin-top: 12px;
   }
 }
