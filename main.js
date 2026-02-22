@@ -1,3 +1,5 @@
+// RAGE THE BAIT — main.js (copy/paste whole file)
+
 let playerRoll = 0;
 let computerRoll = 0;
 
@@ -13,7 +15,7 @@ let draws = 0;
 
 const btnRollDice = document.querySelector(".btn-roll-dice");
 
-// dice boxes... this kinda looks weird on web
+// dice boxes
 const playerDiceBox = document.getElementById("player-dice");
 const cpuDiceBox = document.getElementById("cpu-dice");
 
@@ -28,14 +30,42 @@ const playerDisplayEl = document.getElementById("playerDisplay");
 const nameInputEl = document.getElementById("player_name");
 const formEl = document.getElementById("myform");
 
+// -------------------- UI helpers --------------------
 function updateScoreboard() {
-  baitEl.innerText = score.toFixed(2);
-  roundEl.innerText = round;
-  pWinsEl.innerText = playerWins;
-  cWinsEl.innerText = cpuWins;
-  drawsEl.innerText = draws;
+  if (baitEl) baitEl.innerText = score.toFixed(2);
+  if (roundEl) roundEl.innerText = round;
+  if (pWinsEl) pWinsEl.innerText = playerWins;
+  if (cWinsEl) cWinsEl.innerText = cpuWins;
+  if (drawsEl) drawsEl.innerText = draws;
 }
 
+function resetGame() {
+  // reset state
+  playerRoll = 0;
+  computerRoll = 0;
+
+  score = 0;
+  round = 0;
+
+  playerWins = 0;
+  cpuWins = 0;
+  draws = 0;
+
+  // reset UI
+  updateScoreboard();
+
+  // clear dice
+  if (playerDiceBox) playerDiceBox.innerHTML = "";
+  if (cpuDiceBox) cpuDiceBox.innerHTML = "";
+
+  // re-enable play button
+  if (btnRollDice) {
+    btnRollDice.disabled = false;
+    btnRollDice.innerText = "Roll Dice";
+  }
+}
+
+// -------------------- dice math thingy--------------------
 function createDice(number) {
   const dotPositionMatrix = {
     1: [[50, 50]],
@@ -43,7 +73,7 @@ function createDice(number) {
     3: [[20, 20], [50, 50], [80, 80]],
     4: [[20, 20], [20, 80], [80, 20], [80, 80]],
     5: [[20, 20], [20, 80], [50, 50], [80, 20], [80, 80]],
-    6: [[20, 20], [20, 80], [50, 20], [50, 80], [80, 20], [80, 80]]
+    6: [[20, 20], [20, 80], [50, 20], [50, 80], [80, 20], [80, 80]],
   };
 
   const dice = document.createElement("div");
@@ -65,17 +95,18 @@ function randomizeDice() {
   playerRoll = Math.floor(Math.random() * 6) + 1;
   computerRoll = Math.floor(Math.random() * 6) + 1;
 
-  // --- manipulated bias (keep it unfair) ---
+  // --- secret sauce !evil laughs!
   const bias = Math.random();
   if (bias < 0.4) {
     computerRoll = Math.min(computerRoll + 1, 6);
   }
 
-  // render into the correct boxes
-  playerDiceBox.innerHTML = "";
-  cpuDiceBox.innerHTML = "";
-  playerDiceBox.appendChild(createDice(playerRoll));
-  cpuDiceBox.appendChild(createDice(computerRoll));
+  // rendering of dice
+  if (playerDiceBox) playerDiceBox.innerHTML = "";
+  if (cpuDiceBox) cpuDiceBox.innerHTML = "";
+
+  if (playerDiceBox) playerDiceBox.appendChild(createDice(playerRoll));
+  if (cpuDiceBox) cpuDiceBox.appendChild(createDice(computerRoll));
 }
 
 function applyRoundResult() {
@@ -93,79 +124,95 @@ function applyRoundResult() {
   updateScoreboard();
 }
 
-function endGame(message) {
-  btnRollDice.disabled = true;
-  btnRollDice.innerText = "GAME OVER";
-
-  alert(
-    message +
-      "\nFinal Bait Dollars: " + score.toFixed(2) +
-      "\nRounds: " + round + "/" + maxRounds +
-      "\nYou Wins: " + playerWins +
-      "\nPlayer 2 Wins: " + cpuWins +
-      "\nDraws: " + draws
-  );
-}
-
+// -------------------- game end messaging yk --------------------
 function decideWinnerMessage() {
   if (playerWins > cpuWins) return "YOU WIN! Best record after 7 rounds.";
   if (cpuWins > playerWins) return "PLAYER 2 WINS! You got rage baited after 7 rounds.";
   return "DRAW SET! Same wins after 7 rounds.";
 }
 
-// NAME -> updates HUD display sigh 
-nameInputEl.addEventListener("input", (e) => {
-  const name = e.target.value.trim();
-  playerDisplayEl.innerText = name || "ENTER NAME";
-});
+function endGame(message) {
+  if (btnRollDice) {
+    btnRollDice.disabled = true;
+    btnRollDice.innerText = "GAME OVER";
+  }
+
+  // popup 
+  const again = confirm(
+    message +
+      "\n\nFinal Bait Dollars: " + score.toFixed(2) +
+      "\nRounds: " + round + "/" + maxRounds +
+      "\nYour Wins: " + playerWins +
+      "\nPlayer 2 Wins: " + cpuWins +
+      "\nDraws: " + draws +
+      "\n\nPlay again?"
+  );
+
+  if (again) resetGame();
+}
+
+// -------------------- events --------------------
+
+// NAME -> updates HUD display sigh
+if (nameInputEl) {
+  nameInputEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    if (playerDisplayEl) playerDisplayEl.innerText = name || "ENTER NAME";
+  });
+}
 
 // Roll Dice button
-btnRollDice.addEventListener("click", () => {
-  if (round >= maxRounds) return; // only 7 tries total thats it ... yfm
+if (btnRollDice) {
+  btnRollDice.addEventListener("click", () => {
+    if (round >= maxRounds) return; // only 7 rounds total
 
-  round += 1;
-  updateScoreboard();
+    // lock button during animation so it can't be spammed
+    btnRollDice.disabled = true;
 
-  const interval = setInterval(randomizeDice, 20);
+    round += 1;
+    updateScoreboard();
 
-  setTimeout(() => {
-    clearInterval(interval);
+    const interval = setInterval(randomizeDice, 20);
 
-    // lock in last roll and score it
-    applyRoundResult();
+    setTimeout(() => {
+      clearInterval(interval);
 
-    // after round 7, decide winner by MOST wins
-    if (round >= maxRounds) {
-      endGame(decideWinnerMessage());
+      // lock in last roll and score it
+      applyRoundResult();
+
+      // after round 7, decide winner by MOST wins
+      if (round >= maxRounds) {
+        endGame(decideWinnerMessage());
+      } else {
+        // unlock for next round
+        btnRollDice.disabled = false;
+      }
+    }, 1000);
+  });
+}
+
+// End Game form submit
+if (formEl) {
+  formEl.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = nameInputEl ? nameInputEl.value.trim() : "";
+    if (playerDisplayEl) playerDisplayEl.innerText = name || "ENTER NAME";
+
+    // prevent ending before playing
+    if (round === 0) {
+      alert("You haven't played a round yet.");
+      return;
     }
-  }, 1000);
-});
 
-// End Game form submit (manual stop)
-formEl.addEventListener("submit", (e) => {
-  e.preventDefault();
+    let message;
+    if (playerWins > cpuWins) message = "You ended early — YOU were leading.";
+    else if (cpuWins > playerWins) message = "You ended early — PLAYER 2 was leading.";
+    else message = "You ended early — it was tied.";
 
-  const name = nameInputEl.value.trim();
-  playerDisplayEl.innerText = name || "ENTER NAME";
+    endGame(message);
+  });
+}
 
-  // prevent ending before playing
-  if (round === 0) {
-    alert("You haven't played a round yet.");
-    return;
-  }
-
-  let message;
-
-  if (playerWins > cpuWins) {
-    message = "You ended early — YOU were leading.";
-  } else if (cpuWins > playerWins) {
-    message = "You ended early — PLAYER 2 was leading.";
-  } else {
-    message = "You ended early — it was tied.";
-  }
-
-  endGame(message);
-});
-
-// initialize UI
+// initialize UI on load
 updateScoreboard();
