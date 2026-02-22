@@ -13,7 +13,7 @@ let draws = 0;
 
 const btnRollDice = document.querySelector(".btn-roll-dice");
 
-// dice boxes
+// dice boxes... this kinda looks weird on web
 const playerDiceBox = document.getElementById("player-dice");
 const cpuDiceBox = document.getElementById("cpu-dice");
 
@@ -113,7 +113,7 @@ function decideWinnerMessage() {
   return "DRAW SET! Same wins after 7 rounds.";
 }
 
-// NAME -> updates HUD display
+// NAME -> updates HUD display sigh 
 nameInputEl.addEventListener("input", (e) => {
   const name = e.target.value.trim();
   playerDisplayEl.innerText = name || "ENTER NAME";
@@ -121,7 +121,7 @@ nameInputEl.addEventListener("input", (e) => {
 
 // Roll Dice button
 btnRollDice.addEventListener("click", () => {
-  if (round >= maxRounds) return; // only 7 tries total
+  if (round >= maxRounds) return; // only 7 tries total thats it ... yfm
 
   round += 1;
   updateScoreboard();
@@ -148,10 +148,23 @@ formEl.addEventListener("submit", (e) => {
   const name = nameInputEl.value.trim();
   playerDisplayEl.innerText = name || "ENTER NAME";
 
-  // decide winner at the moment they end it early
-  if (playerWins > cpuWins) endGame("You ended early — YOU were leading.");
-  else if (cpuWins > playerWins) endGame("You ended early — PLAYER 2 was leading.");
-  else endGame("You ended early — it was tied.");
+  // prevent ending before playing
+  if (round === 0) {
+    alert("You haven't played a round yet.");
+    return;
+  }
+
+  let message;
+
+  if (playerWins > cpuWins) {
+    message = "You ended early — YOU were leading.";
+  } else if (cpuWins > playerWins) {
+    message = "You ended early — PLAYER 2 was leading.";
+  } else {
+    message = "You ended early — it was tied.";
+  }
+
+  endGame(message);
 });
 
 // initialize UI
