@@ -160,7 +160,7 @@ body {
 .btn-roll-dice {
   display: block;
   margin: 30px auto;        
-  padding: 18px 60px;       /* makes it big */
+  padding: 18px 60px;      
   font-size: 28px;         
   font-weight: 800;
   border-radius: 14px;
@@ -202,23 +202,65 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Stack HUD vertically */
-  .hud {
-    grid-template-columns: 1fr;
+  /* sreally coded this for computers lol */
+  h1 {
+    font-size: 34px;
+    margin: 12px 0 8px 0;
     text-align: center;
   }
 
-  .hud-left,
-  .hud-center,
-  .hud-right {
-    text-align: center;
+
+  .hud {
+    width: 94%;
+    margin: 10px auto;
+    padding: 12px;
+    display: flex;            
+    flex-direction: column;
+    gap: 10px;
   }
+
+  .hud-left, .hud-center, .hud-right {
+    text-align: center;
+    width: 100%;
+  }
+
+  .hud-value { font-size: 24px; }
+  .hud-money { font-size: 32px; }
+  .hud-round { font-size: 28px; }
 
   .hud-sub {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  /* Stack directions + game */
+  /* this was a project for class... */
+  .name-form {
+    width: 94%;
+    margin: 8px auto 14px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .name-form label {
+    text-align: center;
+  }
+
+  #player_name {
+    width: 100%;
+    font-size: 18px;
+    padding: 12px 14px;
+  }
+
+  .name-form button.greenBut {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 18px;
+  }
+
+  /* well hthis should work fr im tired */
   .game-layout {
     display: flex;
     flex-direction: column;
@@ -226,42 +268,39 @@ body {
   }
 
   .directions-ig {
-    width: 90%;
-    margin-bottom: 20px;
+    width: 94%;
+    margin: 0 auto 16px auto;
   }
 
-  /* Stack dice vertically */
+  /* Dice stack */
   .dice-container {
+    width: 100%;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    margin: 10px auto;
   }
 
-  .player-side,
-  .cpu-side {
+  .player-side, .cpu-side {
     width: 100%;
+    text-align: center;
   }
 
-  /* Shrink dice size on mobile */
   .dice {
     width: 140px;
     height: 140px;
   }
 
-  /* Make roll button full width */
+  /* Big centered roll button */
   .btn-roll-dice {
-    width: 90%;
+    width: 94%;
+    margin: 16px auto;
     font-size: 22px;
+    padding: 16px 0;
   }
 
-  /* Make name input responsive */
-  .name-form {
-    flex-direction: column;
-    gap: 8px;
+  /* shrink image a bit */
+  .rage_pic {
+    width: 160px;
+    margin-top: 10px;
   }
-
-  #player_name {
-    width: 90%;
-  }
-
 }
