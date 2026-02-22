@@ -226,17 +226,9 @@ body {
     text-align: center;
   }
 
-  .hud-value {
-    font-size: clamp(18px, 5vw, 24px);
-  }
-
-  .hud-money {
-    font-size: clamp(22px, 6vw, 30px);
-  }
-
-  .hud-round {
-    font-size: clamp(20px, 5.5vw, 26px);
-  }
+  .hud-value { font-size: clamp(18px, 5vw, 24px); }
+  .hud-money { font-size: clamp(22px, 6vw, 30px); }
+  .hud-round { font-size: clamp(20px, 5.5vw, 26px); }
 
   .hud-sub {
     display: flex;
@@ -254,9 +246,7 @@ body {
     gap: 10px;
   }
 
-  .name-form label {
-    text-align: center;
-  }
+  .name-form label { text-align: center; }
 
   #player_name {
     width: 100%;
@@ -277,40 +267,44 @@ body {
     align-items: center;
   }
 
-  /* Directions box sigh its kinda big not gonna lie */
+  /* Directions */
   .directions-ig {
     width: 92%;
     margin: 0 auto 12px auto;
     text-align: center;
   }
 
-  /* Dice lo on mobile */
+  /* ✅ Dice side-by-side (2-up) */
   .dice-container {
     display: flex;
-    flex-direction: row;        /* side-by-side */
+    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
     width: 100%;
     margin: 10px auto 8px auto;
   }
 
   .player-side,
   .cpu-side {
-    width: 48%;
+    width: 50%;
+    max-width: 190px;
     text-align: center;
   }
 
-  .player-side h3,
-  .cpu-side h3 {
-    font-size: 16px;
-    margin: 6px 0;
+  /* remove big empty space under dice */
+  #player-dice,
+  #cpu-dice {
+    min-height: 0;
+    display: flex;
+    justify-content: center;
   }
 
-  /* dice size for mobile (gotta make it neat) */
+  /* dice size fits phones */
   .dice {
-    width: clamp(85px, 26vw, 120px);
-    height: clamp(85px, 26vw, 120px);
+    width: clamp(90px, 26vw, 120px);
+    height: clamp(90px, 26vw, 120px);
+    margin: 6px auto;
   }
 
   /* Roll Button */
@@ -325,6 +319,6 @@ body {
   /* Image resize */
   .rage_pic {
     width: 160px;
-    margin-top: 12px;
+    margin-top: 10px;
   }
 }
