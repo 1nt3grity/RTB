@@ -159,12 +159,12 @@ body {
 
 .btn-roll-dice {
   display: block;
-  margin: 30px auto;        
-  padding: 18px 60px;      
+  margin: 20px auto;        
+  padding: 10px 28px;      
   font-size: 28px;         
-  font-weight: 800;
-  border-radius: 14px;
-  border: 3px solid black;
+  font-weight: 700;
+  border-radius: 9px;
+  border: 2px solid black;
   cursor: pointer;
   transition: 0.2s ease;
 }
