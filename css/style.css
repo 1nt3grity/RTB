@@ -199,3 +199,69 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
+
+@media (max-width: 768px) {
+
+  /* Stack HUD vertically */
+  .hud {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hud-left,
+  .hud-center,
+  .hud-right {
+    text-align: center;
+  }
+
+  .hud-sub {
+    justify-content: center;
+  }
+
+  /* Stack directions + game */
+  .game-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .directions-ig {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  /* Stack dice vertically */
+  .dice-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .player-side,
+  .cpu-side {
+    width: 100%;
+  }
+
+  /* Shrink dice size on mobile */
+  .dice {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* Make roll button full width */
+  .btn-roll-dice {
+    width: 90%;
+    font-size: 22px;
+  }
+
+  /* Make name input responsive */
+  .name-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #player_name {
+    width: 90%;
+  }
+
+}
