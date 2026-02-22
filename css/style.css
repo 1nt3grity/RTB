@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+h1{
+  font-family: "Eater" , serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+body {
+  background-image: url('../photos/ER\ MOTION.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.dice-container{
+  display: flex;
+}
+
+.dice {
+  display: block;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 10px auto;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+.dice-dot{
+  --top: 0%;
+  --left: 0%;
+
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  border-radius: 50%;
+  
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  transform: translateX(calc(var(--left) * -1)) translateY(calc(var(--top) * -1));
+}
+
+.btn-roll-dice {
+  margin-top: 10px;
+}
+.directions-ig {
+  border: 2px solid black;  
+  padding: 15px;
+  width: 240px;
+  background-color: rgba(100, 128, 141, 0); 
+}
+
+
+.rage_pic {
+  width: 200px;
+  animation: swayRage 2s ease-in-out infinite;
+}
+
+/* Animation for credit... bow bow */
+@keyframes swayRage {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(9px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+.dice-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 67%;
+  margin: 23px auto;
+}
+
+.player-side,
+.cpu-side {
+  width: 20%;
+  text-align: center;
+}
+#player-dice, #cpu-dice {
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== TOP HUD / SCOREBOARD ===== */
+.hud{
+  width: min(980px, 92%);
+  margin: 18px auto 10px auto;
+  padding: 14px 18px;
+  border: 3px solid black;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-left{ text-align: left; }
+.hud-center{ text-align: center; }
+.hud-right{ text-align: right; }
+
+.hud-label{
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.hud-value{
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hud-money{
+  font-size: 40px;      /* BIG bait dollars */
+  font-weight: 900;
+}
+
+.hud-round{
+  font-size: 34px;      /* BIG round */
+  font-weight: 900;
+}
+
+.hud-sub{
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  font-size: 16px;
+}
+
+
+.hud:hover{
+  transform: translateY(-1px);
+  transition: 0.15s ease;
+}
+
+
+.game-layout{
+  width: 100%;
+}
+
+.btn-roll-dice {
+  display: block;
+  margin: 30px auto;        
+  padding: 18px 60px;       /* makes it big */
+  font-size: 28px;         
+  font-weight: 800;
+  border-radius: 14px;
+  border: 3px solid black;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* should be hoover */
+.btn-roll-dice:hover {
+  transform: scale(1.05);
+}
+
+/* gotta add effects */
+.btn-roll-dice:active {
+  transform: scale(0.95);
+}
+
+.name-form{
+  width: min(980px, 92%);
+  margin: 10px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.name-form label{
+  font-weight: 700;
+}
+
+#player_name{
+  padding: 10px 14px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
