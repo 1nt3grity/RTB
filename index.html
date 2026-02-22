@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="main.js" defer></script>
+
+  <title>RAGE THE BAIT</title>
+</head>
+
+<body>
+  <!-- PAGE -->
+  <div class="page">
+
+    <!-- HEADER THINGY -->
+    <header class="top-area">
+      <h1>RAGE THE BAIT</h1>
+
+      <!-- FORMATTING OR W/E-->
+      <div class="hud">
+        <div class="hud-left">
+          <div class="hud-label">Player</div>
+          <div class="hud-value" id="playerDisplay">—</div>
+        </div>
+       
+    <form id="myform" class="name-form">
+    <label for="player_name">Your name:</label>
+  <input
+    id="player_name"
+    name="player_name"
+    maxlength="20"
+    type="text"
+    placeholder="Type Your Name"
+    required
+  />
+  <button type="submit" class="greenBut">End Game</button>
+</form>
+
+
+        <div class="hud-center">
+          <div class="hud-label">Bait Dollars</div>
+          <div class="hud-value hud-money">$<span id="baitdollars">0</span></div>
+        </div>
+
+        <div class="hud-right">
+          <div class="hud-label">Round</div>
+          <div class="hud-value hud-round"><span id="roundCount">0</span> / 7</div>
+
+          <div class="hud-sub">
+            <span>W: <b id="pWins">0</b></span>
+            <span>L: <b id="cWins">0</b></span>
+            <span>D: <b id="draws">0</b></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- GOOD LUCK POOKIE -->
+    <main class="game-layout">
+      <!-- Directions -->
+      <aside class="directions-ig">
+        <strong>Directions</strong>
+        <p>Click <b>Roll Dice</b> to play against Rage The Bait.</p>
+        <p>If your roll is higher, you win +1 bait dollar.</p>
+        <p>If you lose, you lose −1 bait dollar.</p>
+        <p>Ties give +0.05 bait dollars.</p>
+        <p>You can end the game at any time.</p>
+      </aside>
+
+      <!-- OUUU HEHE -->
+      <section class="game-center">
+        <div class="dice-container">
+          <div class="player-side">
+            <h3>YOU</h3>
+            <div id="player-dice"></div>
+          </div>
+
+          <div class="cpu-side">
+            <h3>PLAYER 2</h3>
+            <div id="cpu-dice"></div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-roll-dice">Roll Dice</button>
+
+          
+    
+
+        <img src="photos/rage1.png" class="rage_pic" alt="Rage the Bait" />
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>
