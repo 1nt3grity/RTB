@@ -90,7 +90,7 @@ function createDice(number) {
   return dice;
 }
 
-// spins dice during animation
+// spins thingy it looks cute
 function randomizeDice() {
   playerRoll = Math.floor(Math.random() * 6) + 1;
   computerRoll = Math.floor(Math.random() * 6) + 1;
@@ -137,7 +137,7 @@ function endGame(message) {
     btnRollDice.innerText = "GAME OVER";
   }
 
-  // popup 
+  // popup thing
   const again = confirm(
     message +
       "\n\nFinal Bait Dollars: " + score.toFixed(2) +
@@ -191,7 +191,7 @@ if (btnRollDice) {
   });
 }
 
-// End Game form submit
+// End Game form submit whoop
 if (formEl) {
   formEl.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -214,5 +214,5 @@ if (formEl) {
   });
 }
 
-// initialize UI on load
+// init of the board
 updateScoreboard();
